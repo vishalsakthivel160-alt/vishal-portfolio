@@ -1,0 +1,109 @@
+.skills {
+  padding: var(--space-section) 0;
+  background: var(--bg-secondary);
+}
+
+/* ---- Filter Tabs ---- */
+.skills__filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.skills__filter {
+  padding: 8px 20px;
+  border-radius: var(--radius-round);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  transition: all var(--dur-fast) var(--ease-out);
+  cursor: pointer;
+}
+
+.skills__filter:hover {
+  color: var(--text-primary);
+  border-color: var(--border-glass-hover);
+  background: var(--bg-glass);
+}
+
+.skills__filter--active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.skills__filter--active:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* ---- Skills Grid ---- */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 14px;
+}
+
+.skills__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  transition: transform var(--dur-normal) var(--ease-out),
+              background var(--dur-normal),
+              border-color var(--dur-normal),
+              box-shadow var(--dur-normal);
+  cursor: default;
+}
+
+.skills__card:hover {
+  transform: translateY(-6px);
+  background: var(--bg-glass-hover);
+  border-color: var(--border-glass-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.skills__card-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills__card-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.skills__card-name {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .skills__grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+  }
+
+  .skills__card {
+    padding: 18px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
