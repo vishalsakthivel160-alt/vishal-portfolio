@@ -11,8 +11,8 @@ const CONTACT_INFO = [
       </svg>
     ),
     label: 'Email',
-    value: 'rkvishal13@gmail.com',
-    href: 'mailto:rkvishal13@gmail.com',
+    value: 'vishalsakthivel160@gmail.com',
+    href: 'mailto:vishalsakthivel160@gmail.com',
   },
   {
     icon: (
