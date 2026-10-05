@@ -65,6 +65,19 @@ export default function HeroSection() {
             </button>
             <a
               href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero__btn hero__btn--secondary"
+              aria-label="View resume"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span>View Resume</span>
+            </a>
+            <a
+              href="/resume.pdf"
               download
               className="hero__btn hero__btn--secondary"
               aria-label="Download resume"
