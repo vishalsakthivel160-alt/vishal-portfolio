@@ -46,45 +46,45 @@ export default function Contact() {
   });
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const handleChange = (e) => {
     setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const apiKey = import.meta.env.VITE_WEB3FORMS_KEY;
-    if (!apiKey || apiKey === 'your_web3forms_access_key_here') {
-      // Fallback: log submission when API key is not configured
-      console.log('Contact form submission (API key not configured):', formState);
-      setStatus('sent');
-      setFormState({ name: '', email: '', message: '' });
+    
+    if (!formState.name || !formState.email || !formState.message) {
+      setErrorMessage('Please fill in all fields.');
+      setStatus('error');
       return;
     }
 
     setStatus('sending');
+    setErrorMessage('');
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: apiKey,
           name: formState.name,
           email: formState.email,
           message: formState.message,
-          subject: `Portfolio Contact: ${formState.name}`,
         }),
       });
 
       const data = await response.json();
-      if (data.success) {
+      if (response.ok && data.success) {
         setStatus('sent');
         setFormState({ name: '', email: '', message: '' });
       } else {
+        setErrorMessage(data.error || 'Failed to send message.');
         setStatus('error');
       }
-    } catch {
+    } catch (err) {
+      setErrorMessage('Network error. Please try again later.');
       setStatus('error');
     }
   };
@@ -204,7 +204,7 @@ export default function Contact() {
 
               {status === 'error' && (
                 <p className="contact__error">
-                  Something went wrong. Please try again or email me directly.
+                  {errorMessage || 'Something went wrong. Please try again or email me directly.'}
                 </p>
               )}
             </form>
